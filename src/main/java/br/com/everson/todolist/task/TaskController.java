@@ -14,6 +14,9 @@ import org.springframework.web.bind.annotation.RestController;
 import jakarta.servlet.http.HttpServletRequest;
 
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 
 @RestController
@@ -43,6 +46,7 @@ public class TaskController {
         return ResponseEntity.status(HttpStatus.OK).body(task);
     }
 
+    @GetMapping("/")
     public List<TaskModel> list(HttpServletRequest request){
         var idUser = request.getAttribute("idUser");
         var tasks = this.taskRepository.findByIdUser((UUID) idUser);
